@@ -99,11 +99,13 @@
 
                 <div class="title m-b-md">
                     {{-- <example-component></example-component> --}}
-                    <p><i class="fas fa-paw"></i> RepoTech</p>
+                    {{-- <p><i class="fas fa-fingerprint"></i> SATEM2S</p> --}}
+                    <img src="{{ asset('img/satem2s-new.jpeg') }}" class="rounded mx-auto d-block" width="800px;" alt="satem2s">
+
                 </div><!--title-->
 
                 <div class="links">
-                    <p><h3>ILP Selandar One Stop System</h3></p>
+                    <p><h3><b>S</b>mart <b>A</b>ttendance with <b>TEM</b>perature <b>S</b>creening <b>S</b>ystem</h3></p>
                     {{-- <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
                     <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a> --}}
                 </div><!--links-->
@@ -131,27 +133,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="align-middle"><h1><i class="fas fa-fingerprint"></i> SATEM2S</h1></td>
+                                    {{-- <td class="align-middle"><h1><i class="fas fa-fingerprint"></i> SATEM2S</h1></td> --}}
                                     <td style="text-align: justify">
                                         <h5>
                                         <p><b>S</b>mart <b>A</b>ttendance with <b>TEM</b>perature <b>S</b>creening <b>S</b>ystem memperkenalkan paradigma baru untuk memantau kehadiran pelajar menggunakan Radio Frequency Identification (RFID) berdasarkan Internet of Things (IoT) dan dalam masa yang sama dapat membuat saringan suhu badan pelajar sebelum sesi latihan dilaksanakan.</p>
                                         <p><b>SATEM2S</b> ini merupakan sistem pemantauan kehadiran dan saringan suhu badan masa nyata (real time) yang dapat diakses oleh pelbagai pihak.</p>
                                         <p><a href="kehadiran-1" {{-- target="_blank" --}}>Klik di sini untuk menyemak kehadiran anda.</a></p>
                                         <p><a href="https://forms.gle/BJEHCmtbYCPKvY4Y8" target="_blank">Klik di sini untuk memberi maklumbalas.</a></p>
-                                        </h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle"><h1><i class="fas fa-cogs"></i> <br>BPPA</h1></td>
-                                    <td style="text-align: justify">
-                                        <h5>
-                                        <p>Modul berkaitan Bahagian Pengurusan & Penyelenggaraan Aset</p>
-
-                                        <a href="bppa" type="button" class="d-grid btn btn-outline-success btn-lg">  Klik Untuk Masuk  </a>
-                                        {{-- <p><a href="aduanhm1">Klik di sini untuk aduan kerosakan aset alih (Harta Modal).</a></p>
-                                        <p><a href="aduanabr1">Klik di sini untuk aduan kerosakan aset alih (ABR).</a></p>
-                                        <p><a href="mohonlupushm">Klik di sini untuk permohonan perlupusan aset alih (Harta Modal).</a></p>
-                                        <p><a href="mohonlupusabr">Klik di sini untuk permohonan perlupusan aset alih (ABR).</a></p> --}}
                                         </h5>
                                     </td>
                                 </tr>

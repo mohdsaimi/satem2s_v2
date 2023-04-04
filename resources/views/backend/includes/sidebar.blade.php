@@ -6,7 +6,7 @@
         <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
             <use xlink:href="{{ asset('img/brand/coreui.svg#signet') }}"></use>
         </svg> --}}
-        <h5><i class="fas fa-paw"></i>{{-- <i class="c-icon c-icon-lg cil-paw"> --}}</i> RepoTech</h5>
+        <h5><i class="fas fa-fingerprint"></i>{{-- <i class="c-icon c-icon-lg cil-paw"> --}}</i> SATEM2S</h5>
     </div><!--c-sidebar-brand-->
 
     <ul class="c-sidebar-nav">
