@@ -37,26 +37,6 @@
 
                     <ul class="c-sidebar-nav-dropdown-items">
 
-                        {{-- @if($logged_in_user->can('bppa')) --}}
-                        {{-- @can('bppa') --}}
-                            {{-- <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.lokasi')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Pengurusan Lokasi Ruang')"
-                                    :active="activeClass(Route::is('admin/lokasi.*'), 'c-active')" />
-                            </li>
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.bppa')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Tetapan BPPA')"
-                                    :active="activeClass(Route::is('admin/bppa.*'), 'c-active')" />
-                            </li> --}}
-                        {{-- @endcan --}}
-
-                        {{-- @endif --}}
-
                         @if($logged_in_user->can('bppl'))
                             <li class="c-sidebar-nav-item">
                                 <x-utils.link
