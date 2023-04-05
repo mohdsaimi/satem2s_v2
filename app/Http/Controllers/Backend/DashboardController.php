@@ -5,13 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Courses;
 use App\Models\Students;
 use App\Models\Log_ins;
-use App\Models\Hmrosak;
-use App\Models\Abrrosak;
-use App\Models\Asetalih;
-use App\Models\Lokasi;
-use App\Models\Bangunan;
-use App\Models\Atarosak;
-use App\Models\Strrosak;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;

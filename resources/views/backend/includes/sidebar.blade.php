@@ -37,9 +37,9 @@
 
                     <ul class="c-sidebar-nav-dropdown-items">
 
-                        @if($logged_in_user->can('bppa'))
+                        {{-- @if($logged_in_user->can('bppa')) --}}
                         {{-- @can('bppa') --}}
-                            <li class="c-sidebar-nav-item">
+                            {{-- <li class="c-sidebar-nav-item">
                                 <x-utils.link
                                     :href="route('admin.lokasi')"
                                     class="c-sidebar-nav-link"
@@ -52,10 +52,10 @@
                                     class="c-sidebar-nav-link"
                                     :text="__('Tetapan BPPA')"
                                     :active="activeClass(Route::is('admin/bppa.*'), 'c-active')" />
-                            </li>
+                            </li> --}}
                         {{-- @endcan --}}
 
-                        @endif
+                        {{-- @endif --}}
 
                         @if($logged_in_user->can('bppl'))
                             <li class="c-sidebar-nav-item">
@@ -132,175 +132,6 @@
 
                 @endif
                 {{-- end no 2 --}}
-
-                {{-- no 3 --}}
-                @if($logged_in_user->hasAllAccess() ||
-                (
-                    $logged_in_user->can('bppa') ||
-                    $logged_in_user->can('techteam')
-                ))
-                <li class="c-sidebar-nav-dropdown">
-                    <x-utils.link
-                        href="#"
-                        icon="c-sidebar-nav-icon fas fa-landmark"
-                        class="c-sidebar-nav-dropdown-toggle"
-                        :text="__('ASET ALIH')" />
-
-                    <ul class="c-sidebar-nav-dropdown-items">
-
-                        @if($logged_in_user->can('bppa'))
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.hartamodal')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Senarai Harta Modal')"
-                                    :active="activeClass(Route::is('admin/hartamodal.*'), 'c-active')" />
-                            </li>
-
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.abr')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Senarai ABR')"
-                                    :active="activeClass(Route::is('admin/abr.*'), 'c-active')" />
-                            </li>
-
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.hmrosak')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Aduan Kerosakan (HM)')"
-                                    :active="activeClass(Route::is('admin/hmrosak.*'), 'c-active')" />
-                            </li>
-
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.abrrosak')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Aduan Kerosakan (ABR)')"
-                                    :active="activeClass(Route::is('admin/abrrosak.*'), 'c-active')" />
-                            </li>
-                        @endif
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.hmrosaktin')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Tindakan Aduan (HM)')"
-                                :active="activeClass(Route::is('admin/hmrosaktin.*'), 'c-active')" />
-                        </li>
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.abrrosaktin')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Tindakan Aduan (ABR)')"
-                                :active="activeClass(Route::is('admin/abrrosaktin.*'), 'c-active')" />
-                        </li>
-
-                        @if($logged_in_user->can('bppa'))
-
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.hmlupus')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Permohonan Pelupusan (HM)')"
-                                    :active="activeClass(Route::is('admin/hmlupus.*'), 'c-active')" />
-                            </li>
-
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.abrlupus')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Permohonan Pelupusan (ABR)')"
-                                    :active="activeClass(Route::is('admin/abrlupus.*'), 'c-active')" />
-                            </li>
-                        @endif
-
-                        {{-- next menu --}}
-
-                    </ul>
-                </li>{{-- end asset --}}
-
-                @endif
-                {{-- end no 3 --}}
-
-                {{-- no 4 --}}
-                @if($logged_in_user->hasAllAccess() ||
-                (
-                    $logged_in_user->can('bppa') ||
-                    $logged_in_user->can('atateam')
-                ))
-                <li class="c-sidebar-nav-dropdown">
-                    <x-utils.link
-                        href="#"
-                        icon="c-sidebar-nav-icon fas fa-images"
-                        class="c-sidebar-nav-dropdown-toggle"
-                        :text="__('ASET TAK ALIH')" />
-
-                    <ul class="c-sidebar-nav-dropdown-items">
-
-                    @if($logged_in_user->can('bppa'))
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.kamus_ata')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Kamus Komponen ATA')"
-                                :active="activeClass(Route::is('admin/kamus_ata.*'), 'c-active')" />
-                        </li>
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.asetalih')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Senarai ATA')"
-                                :active="activeClass(Route::is('admin/asetalih.*'), 'c-active')" />
-                        </li>
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.atarosak')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Senarai Aduan ATA')"
-                                :active="activeClass(Route::is('admin/atarosak.*'), 'c-active')" />
-                        </li>
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.strrosak')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Senarai Aduan ATA (Struktur)')"
-                                :active="activeClass(Route::is('admin/strrosak.*'), 'c-active')" />
-                        </li>
-                    @endif
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.atarosaktin')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Tindakan Aduan (ATA)')"
-                                :active="activeClass(Route::is('admin/atarosaktin.*'), 'c-active')" />
-                        </li>
-
-                        <li class="c-sidebar-nav-item">
-                            <x-utils.link
-                                :href="route('admin.strrosaktin')"
-                                class="c-sidebar-nav-link"
-                                :text="__('Tindakan Aduan (ATA-Struktur)')"
-                                :active="activeClass(Route::is('admin/strrosaktin.*'), 'c-active')" />
-                        </li>
-                
-
-                        {{-- next menu --}}
-
-                    </ul>
-                </li>{{-- end asset x alih--}}
-
-                @endif
-                {{-- end no 4 --}}
-
-
-
 
 
         @if (
