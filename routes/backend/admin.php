@@ -570,6 +570,14 @@ Route::group([
     Route::post('update_semester', [StudentController::class, 'update_semester'])->name('update_semester');
     /* endsemester */
 
+    /* DKP */
+    Route::get('tetapan_dkp', [StudentController::class, 'tetapan_dkp'])->name('tetapan_dkp')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+            ->push(__('Pengurusan DKP'), route('admin.tetapan_dkp'));
+    });
+    /* endDKP */
+
 });
 
 // Administrator, BPPA & AtaTeam only

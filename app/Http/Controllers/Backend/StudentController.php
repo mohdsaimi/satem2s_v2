@@ -339,5 +339,11 @@ class StudentController extends Controller
         
     }
 
+    public function tetapan_dkp()
+    {
+        return view('backend.tetapan_dkp');
+        
+    }
+
 
 }

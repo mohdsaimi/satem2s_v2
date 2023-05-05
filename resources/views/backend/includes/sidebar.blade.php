@@ -61,6 +61,13 @@
                                     :text="__('Pengurusan Semester')"
                                     :active="activeClass(Route::is('admin/semester.*'), 'c-active')" />
                             </li>
+                            <li class="c-sidebar-nav-item">
+                                <x-utils.link
+                                    :href="route('admin.tetapan_dkp')"
+                                    class="c-sidebar-nav-link"
+                                    :text="__('Tetapan DKP')"
+                                    :active="activeClass(Route::is('admin/tetapan_dkp.*'), 'c-active')" />
+                            </li>
                         @endif
 
 
