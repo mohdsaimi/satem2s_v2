@@ -6,6 +6,7 @@ use App\Models\Students;
 use App\Models\Courses;
 use App\Models\Log_ins;
 use App\Models\Statuss;
+use App\Models\TetapanDKP;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arcanedev\LogViewer\Entities\Log;
@@ -341,9 +342,203 @@ class StudentController extends Controller
 
     public function tetapan_dkp()
     {
-        return view('backend.tetapan_dkp');
+        $tetapandkp = TetapanDKP::where('id', 1)->first();
+
+        return view('backend.tetapan_dkp')
+            ->with('tetapandkp',$tetapandkp);
+        
+    }
+
+    public function update_tetapan_dkp(Request $request)
+    {
+        $time_1a = $request->time_1a;
+        $time_1b = $request->time_1b;
+        $time_1c = $request->time_1c;
+        $time_2a = $request->time_2a;
+        $time_2b = $request->time_2b;
+        $time_2c = $request->time_2c;
+        $time_2d = $request->time_2d;
+        $time_3a = $request->time_3a;
+        $time_3b = $request->time_3b;
+        $time_3c = $request->time_3c;
+        $time_4a = $request->time_4a;
+        $time_4b = $request->time_4b;
+        $time_4c = $request->time_4c;
+        $time_4d = $request->time_4d;
+        $time_5a = $request->time_5a;
+        $time_5b = $request->time_5b;
+        $time_5c = $request->time_5c;
+
+
+        /* dd($mohon_lupus); */
+
+            tetapandkp::where('id', 1)->update(['time_1a' => $time_1a, 'time_1b' => $time_1b, 'time_1c' => $time_1c,
+            'time_2a' => $time_2a, 'time_2b' => $time_2b, 'time_2c' => $time_2c,'time_2d' => $time_2d,
+            'time_3a' => $time_3a, 'time_3b' => $time_3b, 'time_3c' => $time_3c,
+            'time_4a' => $time_4a, 'time_4b' => $time_4b, 'time_4c' => $time_4c, 'time_4d' => $time_4d,
+            'time_5a' => $time_5a, 'time_5b' => $time_5b, 'time_5c' => $time_5c
+        ]);
+            return redirect()->route('admin.tetapan_dkp')->withFlashSuccess(__('Tetapan berjaya dikemaskini.'));
         
     }
 
 
+    public function index_kehadiran_dkp(Request $request)
+    {
+        $date = $request->date ?? date('Y-m-d');
+
+        $tetapandkp = TetapanDKP::where('id', 1)->first();
+        
+        $slot1a=$tetapandkp->time_1a;
+        $slot1b=$tetapandkp->time_1b;
+        $slot1c=$tetapandkp->time_1c;
+
+        $slot2a=$tetapandkp->time_2a;
+        $slot2b=$tetapandkp->time_2b;
+        $slot2c=$tetapandkp->time_2c;
+        $slot2d=$tetapandkp->time_2d;
+
+        $slot3a=$tetapandkp->time_3a;
+        $slot3b=$tetapandkp->time_3b;
+        $slot3c=$tetapandkp->time_3c;
+
+        $slot4a=$tetapandkp->time_4a;
+        $slot4b=$tetapandkp->time_4b;
+        $slot4c=$tetapandkp->time_4c;
+        $slot4d=$tetapandkp->time_4d;
+
+        $slot5a=$tetapandkp->time_5a;
+        $slot5b=$tetapandkp->time_5b;
+        $slot5c=$tetapandkp->time_5c;
+
+
+        $query = Students::query()->where('status_id',1);
+
+        $slot1G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '<', $slot1a)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $slot1Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot1a)->whereTime('masa', '<', $slot1b)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $slot1R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot1b)->whereTime('masa', '<', $slot1c)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+
+        $slot2G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2a)->whereTime('masa', '<', $slot2b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot2Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2b)->whereTime('masa', '<', $slot2c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot2R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2c)->whereTime('masa', '<', $slot2d)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot3G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2d)->whereTime('masa', '<', $slot3a)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot3Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot3a)->whereTime('masa', '<', $slot3b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot3R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot3b)->whereTime('masa', '<', $slot3c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot4G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4a)->whereTime('masa', '<', $slot4b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot4Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4b)->whereTime('masa', '<', $slot4c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot4R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4c)->whereTime('masa', '<', $slot4d)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot5G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4d)->whereTime('masa', '<', $slot5a)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot5Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot5a)->whereTime('masa', '<', $slot5b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot5R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot5b)->whereTime('masa', '<', $slot5c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+/* dd($slot2G); */
+
+        if (!empty($request->term_1)) {
+            $term_1 = $request->term_1;
+            $term_2 = $request->term_2;
+
+            $query->where('course_id', $term_1)->where('sesi_masuk', 'like', '%' . $term_2 . '%');
+
+        }
+
+
+        $students = $query->orderBy('semester', 'ASC')->orderBy('nama_pelajar', 'ASC')->paginate(25);
+
+        return view('backend.kehadiran_dkp')
+            ->withCourses(Courses::all())
+            ->with('date', $date)
+            ->with('students', $students)
+            ->with('slot1G', $slot1G)
+            ->with('slot1Y', $slot1Y)
+            ->with('slot1R', $slot1R)
+            ->with('slot2G', $slot2G)
+            ->with('slot2Y', $slot2Y)
+            ->with('slot2R', $slot2R)
+            ->with('slot3G', $slot3G)
+            ->with('slot3Y', $slot3Y)
+            ->with('slot3R', $slot3R)
+            ->with('slot4G', $slot4G)
+            ->with('slot4Y', $slot4Y)
+            ->with('slot4R', $slot4R)
+            ->with('slot5G', $slot5G)
+            ->with('slot5Y', $slot5Y)
+            ->with('slot5R', $slot5R)
+            ->with('i', (request()->input('page', 1) - 1) * 25);
+    }
+
+    public function create_pdf_dkp(Request $request)
+    {
+        $date = $request->date ?? date('Y-m-d');
+
+        $tetapandkp = TetapanDKP::where('id', 1)->first();
+        
+        $slot1a=$tetapandkp->time_1a;
+        $slot1b=$tetapandkp->time_1b;
+        $slot1c=$tetapandkp->time_1c;
+
+        $slot2a=$tetapandkp->time_2a;
+        $slot2b=$tetapandkp->time_2b;
+        $slot2c=$tetapandkp->time_2c;
+        $slot2d=$tetapandkp->time_2d;
+
+        $slot3a=$tetapandkp->time_3a;
+        $slot3b=$tetapandkp->time_3b;
+        $slot3c=$tetapandkp->time_3c;
+
+        $slot4a=$tetapandkp->time_4a;
+        $slot4b=$tetapandkp->time_4b;
+        $slot4c=$tetapandkp->time_4c;
+        $slot4d=$tetapandkp->time_4d;
+
+        $slot5a=$tetapandkp->time_5a;
+        $slot5b=$tetapandkp->time_5b;
+        $slot5c=$tetapandkp->time_5c;
+
+
+        $query = Students::query()->where('status_id',1);
+
+        $slot1G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '<', $slot1a)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $slot1Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot1a)->whereTime('masa', '<', $slot1b)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $slot1R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot1b)->whereTime('masa', '<', $slot1c)->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+
+        $slot2G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2a)->whereTime('masa', '<', $slot2b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot2Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2b)->whereTime('masa', '<', $slot2c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot2R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2c)->whereTime('masa', '<', $slot2d)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot3G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot2d)->whereTime('masa', '<', $slot3a)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot3Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot3a)->whereTime('masa', '<', $slot3b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot3R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot3b)->whereTime('masa', '<', $slot3c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot4G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4a)->whereTime('masa', '<', $slot4b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot4Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4b)->whereTime('masa', '<', $slot4c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot4R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4c)->whereTime('masa', '<', $slot4d)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        $slot5G = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot4d)->whereTime('masa', '<', $slot5a)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot5Y = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot5a)->whereTime('masa', '<', $slot5b)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $slot5R = collect(Log_ins::whereDate('masa', $date)->whereTime('masa', '>', $slot5b)->whereTime('masa', '<', $slot5c)->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+    /* dd($slot2G); */
+
+        if (!empty($request->term_1)) {
+            $term_1 = $request->term_1;
+            $term_2 = $request->term_2;
+
+            $query->where('course_id', $term_1)->where('sesi_masuk', 'like', '%' . $term_2 . '%');
+
+        }
+
+
+        $students = $query->orderBy('semester', 'ASC')->orderBy('nama_pelajar', 'ASC')->paginate(25);
+
+        $pdf = PDF::loadView('backend.pdf_dkp_view', compact('students', 'date','slot1G', 'slot1Y', 'slot1R', 'slot2G', 
+        'slot2Y', 'slot2R', 'slot3G', 'slot3Y', 'slot3R', 
+        'slot4G', 'slot4Y', 'slot4R', 'slot5G', 'slot5Y', 'slot5R'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('pdf_file.pdf');
+
+
+    }
 }

@@ -114,6 +114,14 @@
                                     :active="activeClass(Route::is('admin/kehadiran.*'), 'c-active')" />
                             </li>
 
+                            <li class="c-sidebar-nav-item">
+                                <x-utils.link
+                                    :href="route('admin.kehadiran_dkp')"
+                                    class="c-sidebar-nav-link"
+                                    :text="__('Laporan DKP')"
+                                    :active="activeClass(Route::is('admin/kehadiran_dkp.*'), 'c-active')" />
+                            </li>
+
                     </ul>
                 </li>{{-- end satem2s --}}
 

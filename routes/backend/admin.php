@@ -576,6 +576,8 @@ Route::group([
         $trail->parent('admin.dashboard')
             ->push(__('Pengurusan DKP'), route('admin.tetapan_dkp'));
     });
+
+    Route::post('update_tetapan_dkp', [StudentController::class, 'update_tetapan_dkp'])->name('update_tetapan_dkp');
     /* endDKP */
 
 });
@@ -732,6 +734,18 @@ Route::group([
         $trail->parent('admin.dashboard')
             ->push(__('Kehadiran Pelajar'), route('admin.pdf_view'));
     });
+
+    Route::get('kehadiran_dkp', [StudentController::class, 'index_kehadiran_dkp'])->name('kehadiran_dkp')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                ->push(__('Laporan Daftar Kehadiran Pelajar'), route('admin.kehadiran_dkp'));
+        });
+
+    Route::get('pdf_dkp_view', [StudentController::class, 'create_pdf_dkp'])->name('pdf_dkp_view')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                ->push(__('Laporan Daftar Kehadiran Pelajar'), route('admin.pdf_dkp_view'));
+        });
 
     
 });
