@@ -23,3 +23,4 @@ use App\Models\Log_ins;
 /* Route::post("/","Log_inController@insert"); */
 Route::post("add", [Log_indeviceController::class, 'add']);
 Route::post("add_vip", [Log_indeviceController::class, 'add_vip']);
+Route::post("add_inout", [Log_indeviceController::class, 'add_inout']);

@@ -7,6 +7,7 @@ use App\Models\Courses;
 use App\Models\Log_ins;
 use App\Models\Statuss;
 use App\Models\TetapanDKP;
+use App\Models\Log_inouts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arcanedev\LogViewer\Entities\Log;
@@ -538,7 +539,60 @@ class StudentController extends Controller
         'slot4G', 'slot4Y', 'slot4R', 'slot5G', 'slot5Y', 'slot5R'))->setPaper('a4', 'landscape');
 
         return $pdf->download('pdf_file.pdf');
-
-
     }
+
+    public function index_log_in_out(Request $request)
+    {
+
+        $query = Students::query()->where('status_id',1);
+
+        $date = $request->date ?? date('Y-m-d');
+
+        $log_in = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '<', '19:00')->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $log_out = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '<', '19:00')->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $log_out_L = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '>', '19:00')->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        if (!empty($request->term_1)) {
+            $term_1 = $request->term_1;
+            $term_2 = $request->term_2;
+            $query->where('course_id', $term_1)->where('sesi_masuk', 'like', '%' . $term_2 . '%');
+        }
+
+        $students = $query->orderBy('semester', 'ASC')->orderBy('nama_pelajar', 'ASC')->paginate(25);
+
+        return view('backend.log_in_out')
+            ->withCourses(Courses::all())
+            ->with('students', $students)
+            ->with('log_in', $log_in)
+            ->with('log_out', $log_out)
+            ->with('log_out_L', $log_out_L)
+            ->with('i', (request()->input('page', 1) - 1) * 25);
+    }
+
+    public function create_PDF_log_inout(Request $request)
+    {
+
+        $query = Students::query()->where('status_id',1);
+
+        $date = $request->date ?? date('Y-m-d');
+
+        $log_in = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '<', '19:00')->orderBy('masa', 'asc')->get())->groupBy('id_rfid');
+        $log_out = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '<', '19:00')->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+        $log_out_L = collect(Log_inouts::whereDate('masa', $date)->whereTime('masa', '>', '19:00')->orderBy('masa', 'desc')->get())->groupBy('id_rfid');
+
+        if (!empty($request->term_1)) {
+            $term_1 = $request->term_1;
+            $term_2 = $request->term_2;
+            $query->where('course_id', $term_1)->where('sesi_masuk', 'like', '%' . $term_2 . '%');
+        }
+
+        $students = $query->orderBy('semester', 'ASC')->orderBy('nama_pelajar', 'ASC')->paginate(25);
+        
+        $pdf = PDF::loadView('backend.pdf_log_in_out_view', compact('students', 'log_in','log_out', 'log_out_L'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('pdf_log_in_out_view.pdf');
+    }
+
+
+
 }

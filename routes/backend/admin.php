@@ -747,6 +747,16 @@ Route::group([
                 ->push(__('Laporan Daftar Kehadiran Pelajar'), route('admin.pdf_dkp_view'));
         });
 
+    Route::get('log_in_out', [StudentController::class, 'index_log_in_out'])->name('log_in_out')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                ->push(__('Laporan Keluar/Masuk Pelajar'), route('admin.log_in_out'));
+        });
+    Route::get('pdf_log_in_out_view', [StudentController::class, 'create_PDF_log_inout'])->name('pdf_log_in_out_view')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                ->push(__('Laporan Keluar/Masuk Pelajar'), route('admin.pdf_log_in_out_view'));
+        });
     
 });
 

@@ -118,7 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  {{ $i=0 }}
+                    {{ $i=0 }}
                     @foreach($students as $student)
 
                     <tr>

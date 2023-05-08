@@ -122,6 +122,14 @@
                                     :active="activeClass(Route::is('admin/kehadiran_dkp.*'), 'c-active')" />
                             </li>
 
+                            <li class="c-sidebar-nav-item">
+                                <x-utils.link
+                                    :href="route('admin.log_in_out')"
+                                    class="c-sidebar-nav-link"
+                                    :text="__('Laporan Keluar/Masuk')"
+                                    :active="activeClass(Route::is('admin/log_in_out.*'), 'c-active')" />
+                            </li>
+
                     </ul>
                 </li>{{-- end satem2s --}}
 
