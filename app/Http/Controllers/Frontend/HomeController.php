@@ -8,6 +8,7 @@ use App\Models\Courses;
 use App\Models\Log_ins;
 use App\Models\Log_ins_vip;
 use App\Models\Vips;
+use App\Models\Log_alerts;
 use Illuminate\Http\Request;
 use Arcanedev\LogViewer\Entities\Log;
 
@@ -167,6 +168,46 @@ class HomeController extends Controller
             ->with('log_petang', $log_petang)
             ->with('log_pagi_xhadir', $log_pagi_xhadir)
             ->with('log_petang_xhadir', $log_petang_xhadir);
+    }
+
+    public function ping()
+    {
+        $ip = '20.1.21.93';
+    $port = '53';
+    $url = $ip . ':' . $port;
+    
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $data = curl_exec($ch);
+    $health = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($health) {
+        $json = json_encode(['health' => $health, 'status' => '1']);
+        return $json;
+    } else {
+        $json = json_encode(['health' => $health, 'status' => '0']);
+        return $json;
+    }
+
+    dd($health);
+
+    return view('frontend.ping')
+        ->with('health', $health);
+    }
+
+    public function alerts(Request $request)
+    {
+        $query = Log_alerts::query();
+
+        $log_alerts = $query->orderBy('id','DESC')->paginate(25);
+
+        return view('frontend.alerts')
+            ->with('log_alerts', $log_alerts)
+            ->with('i', (request()->input('page', 1) - 1) * 25);
+
     }
     
 
