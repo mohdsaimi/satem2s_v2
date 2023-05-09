@@ -24,3 +24,4 @@ use App\Models\Log_ins;
 Route::post("add", [Log_indeviceController::class, 'add']);
 Route::post("add_vip", [Log_indeviceController::class, 'add_vip']);
 Route::post("add_inout", [Log_indeviceController::class, 'add_inout']);
+Route::post("alert", [Log_indeviceController::class, 'alert']);

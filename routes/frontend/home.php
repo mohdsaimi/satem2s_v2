@@ -64,6 +64,18 @@ Route::get('satem2s', [HomeController::class, 'satem2s'])
         $trail->push(__('Home'), route('frontend.index'));
     });
 
+Route::get('alerts', [HomeController::class, 'alerts'])
+    ->name('alerts')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('frontend.index'));
+    });
+
+Route::get('ping', [HomeController::class, 'ping'])
+    ->name('ping')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('frontend.index'));
+    });
+
 /* aduan kerosakan */
 Route::get('aduanhm1', [AduanController::class, 'index'])->name('pages.aduanhm1')
     ->breadcrumbs(function (Trail $trail) {

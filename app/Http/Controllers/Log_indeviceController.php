@@ -8,6 +8,7 @@ use App\Models\Courses;
 use App\Models\Vips;
 use App\Models\Log_ins_vip;
 use App\Models\Log_inouts;
+use App\Models\Log_alerts;
 use Illuminate\Http\Request;
 
 class Log_indeviceController extends Controller
@@ -57,6 +58,22 @@ class Log_indeviceController extends Controller
 
         $log_in=new Log_inouts;
         $log_in->id_rfid=$request->rfid;
+
+        $log_in->suhu=$request->suhu;
+        $log_in->lokasi=$request->lokasi;
+
+        if($api_key_value == $request->api_key_value){
+            $log_in->save();
+        }
+
+    }
+
+    public function alert(Request $request)
+    {
+        $api_key_value = "5a1m1th3gr34t_4Lw4y5pr0t3ct3d8yth34Lm19hty";
+
+        $log_in=new Log_alerts;
+        /* $log_in->id_rfid=$request->rfid; */
 
         $log_in->suhu=$request->suhu;
         $log_in->lokasi=$request->lokasi;
