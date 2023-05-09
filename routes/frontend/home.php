@@ -58,7 +58,11 @@ Route::get('konvo_del', [HomeController::class, 'konvo_del'])
 
 Route::delete('konvo_del_1/{id}', [HomeController::class, 'konvo_del_1'])->name('konvo_del_1');
 
-
+Route::get('satem2s', [HomeController::class, 'satem2s'])
+    ->name('satem2s')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Home'), route('frontend.index'));
+    });
 
 /* aduan kerosakan */
 Route::get('aduanhm1', [AduanController::class, 'index'])->name('pages.aduanhm1')

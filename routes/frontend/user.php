@@ -15,6 +15,7 @@ use App\Models\Hartamodal;
 use App\Models\Hmrosak;
 use App\Models\Abrrosak;
 use App\Models\Atarosak;
+use App\Models\Strrosak;
 
 /*
  * These frontend controllers require the user to be logged in
