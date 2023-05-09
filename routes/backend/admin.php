@@ -578,6 +578,15 @@ Route::group([
     });
 
     Route::post('update_tetapan_dkp', [StudentController::class, 'update_tetapan_dkp'])->name('update_tetapan_dkp');
+
+    Route::get('log_alert', [StudentController::class, 'log_alert'])->name('log_alert')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+            ->push(__('Log Alert'), route('admin.log_alert'));
+    });
+
+    Route::delete('destroy_alert/{log_alerts}', [StudentController::class, 'destroy_alert'])->name('destroy_alert');
+
     /* endDKP */
 
 });

@@ -8,6 +8,7 @@ use App\Models\Log_ins;
 use App\Models\Statuss;
 use App\Models\TetapanDKP;
 use App\Models\Log_inouts;
+use App\Models\Log_alerts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arcanedev\LogViewer\Entities\Log;
@@ -592,6 +593,29 @@ class StudentController extends Controller
 
         return $pdf->download('pdf_log_in_out_view.pdf');
     }
+
+    public function log_alert(Request $request)
+    {
+        
+        $query = Log_alerts::query();
+            
+        $log_alerts = $query->orderBy('id', 'desc')->paginate(25);
+
+        /* dd($log_alerts); */
+        return view('backend.log_alert')
+            ->with('log_alerts', $log_alerts)
+            
+            ->with('i', (request()->input('page', 1) - 1) * 25);
+    }
+
+    public function destroy_alert(Log_alerts $log_alerts)
+    {
+        //
+        $log_alerts->delete();
+
+        return redirect()->route('admin.log_alert')->withFlashSuccess(__('Maklumat alert berjaya dipadam.'));
+    }
+
 
 
 
