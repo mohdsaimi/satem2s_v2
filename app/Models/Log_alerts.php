@@ -22,7 +22,7 @@ class Log_alerts extends Model
         'masa'
     ];
 
-  
+
 
     public function student()
     {

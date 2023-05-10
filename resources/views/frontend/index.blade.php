@@ -100,7 +100,7 @@
                 <div class="title m-b-md">
                     {{-- <example-component></example-component> --}}
                     {{-- <p><i class="fas fa-fingerprint"></i> SATEM2S</p> --}}
-                    <img src="{{ asset('img/satem2s-new.jpeg') }}" class="rounded mx-auto d-block" width="800px;" alt="satem2s">
+                    <img src="{{ asset('img/satem2s-new.jpeg') }}" class="rounded mx-auto d-block" width="70%;" alt="satem2s">
 
                 </div><!--title-->
 

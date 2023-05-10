@@ -67,7 +67,7 @@
             .div-with-bg{
                 /* resize: both;
                 overflow: auto; */
-                background-image: url('{{ asset('storage/IMAGES/konvo_1.png') }}');
+                background-image: url('{{ asset('storage/IMAGES/itex23.jpg') }}');
                 background-repeat: no-repeat;
                 background-position: center center; 
                 position: relative;
@@ -172,8 +172,9 @@
                                     </div>
 
                                     <div class="card-body">
-                                        <h1 style="font-size:3em;" class="card-title">Tuan Yang Terutama</h1>
+                                        {{-- <h1 style="font-size:3em;" class="card-title">Ketua Pengarah JTM</h1> --}}
                                         <h1 style="font-size:3em;" class="card-title">{{ $senarai_vip [1] ?? null }}</h1>
+                                        <h1 style="font-size:3em;" class="card-title">Ketua Pengarah JTM</h1>
                                         
                                             {{-- <p class="btn btn-success btn-lg">Suhu : {{ $senarai_suhu [1] ?? null }}</p> --}}
                                             <p class="btn btn-success btn-lg button" style="font-size:2.5em;">Masa : {{ date('H:i:s', strtotime($senarai_masa [1])) }}</p>

@@ -68,13 +68,7 @@
                                     :text="__('Tetapan DKP')"
                                     :active="activeClass(Route::is('admin/tetapan_dkp.*'), 'c-active')" />
                             </li>
-                            <li class="c-sidebar-nav-item">
-                                <x-utils.link
-                                    :href="route('admin.log_alert')"
-                                    class="c-sidebar-nav-link"
-                                    :text="__('Log Alert')"
-                                    :active="activeClass(Route::is('admin/log_alert.*'), 'c-active')" />
-                            </li>
+
                         @endif
 
 
@@ -135,6 +129,14 @@
                                     class="c-sidebar-nav-link"
                                     :text="__('Laporan Keluar/Masuk')"
                                     :active="activeClass(Route::is('admin/log_in_out.*'), 'c-active')" />
+                            </li>
+
+                            <li class="c-sidebar-nav-item">
+                                <x-utils.link
+                                    :href="route('admin.log_alert')"
+                                    class="c-sidebar-nav-link"
+                                    :text="__('Log Alert')"
+                                    :active="activeClass(Route::is('admin/log_alert.*'), 'c-active')" />
                             </li>
 
                     </ul>
